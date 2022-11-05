@@ -1,0 +1,38 @@
+﻿@model List<FuncionarioViewModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Listagem de Funcionários</h2>
+
+<a class="btn btn-outline-secondary" href="/funcionario/create">Novo Funcionário</a>
+<br /><br />
+
+<table class="table table-responsive-xl table-striped">
+    <tr class="thead-dark text-center">
+        <th>Ações</th>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Tipo de Funcionário</th>
+        <th>Está Ativo?</th>
+    </tr>
+    @foreach (var func in Model)
+    {
+        <tr class="text-center">
+            <td>
+                <a class="btn btn-primary" href="/funcionario/Edit?id=@func.Id">Editar</a>
+                <a class="btn btn-danger" href="javascript:apagarFuncionario(@func.Id)">Apagar</a>
+            </td>
+            <td>@func.Id</td>
+            <td>@func.Nome</td>
+            <td>@func.Tipo</td>
+            @if(@func.Ativo)
+            {
+                <td>Ativo</td>
+            }
+            else
+            {
+                <td>Inativo</td>
+            }
+        </tr>
+    }
+</table>
